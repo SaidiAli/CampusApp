@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">campus</string>
+    <string name="starting_page_header">see what\'s trending at campus</string>
+    <string name="login_page_header">let\'s Sign You In</string>
+    <string name="signup_page_header">let\'s Get You Started</string>
+    <string name="otp_page_header">Verification</string>
+    <string name="profile_page_header">Setup Your Profile</string>
+    <string name="create_account">Create Account</string>
+    <string name="login_option">I already have an account!</string>
+    <string name="login">Login</string>
+    <string name="register">Continue</string>
+    <string name="verification">Continue</string>
+    <string name="finish">Finish</string>
+    <string name="username">Username</string>
+    <string name="pos">Program Of Study</string>
+    <string name="campus_name">Campus Name</string>
+    <string name="password">Password</string>
+    <string name="otp">OTP</string>
+    <string name="phone_number">Your Phone Number</string>
+    <string name="name">Name</string>>
+    <string name="email">Email</string>>
+</resources>

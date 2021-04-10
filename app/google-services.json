@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "164571044984",
+    "project_id": "campusapp-e1546",
+    "storage_bucket": "campusapp-e1546.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:164571044984:android:c8c6f8735a17d858f2e18d",
+        "android_client_info": {
+          "package_name": "com.devhhub.campus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "164571044984-v7j5c5n8t3tdfeergt1gd7tqjnsf7b1i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXdxF7vchW-Qnv3wXIAJ3i8TVRVwwBpj8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "164571044984-v7j5c5n8t3tdfeergt1gd7tqjnsf7b1i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
