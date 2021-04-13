@@ -5,8 +5,8 @@ import com.google.firebase.auth.AuthResult
 
 interface FirebaseInterface {
 
-    fun signUp(email: String, password: String): Task<AuthResult>
+    suspend fun signUp(email: String, password: String): Task<AuthResult>
 
-    fun signIn(): Task<AuthResult>
+    suspend fun signIn(): Task<AuthResult>
 
 }

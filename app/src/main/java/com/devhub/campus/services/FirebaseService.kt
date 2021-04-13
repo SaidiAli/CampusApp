@@ -13,11 +13,11 @@ class FirebaseService
         private val auth: FirebaseAuth
     ): FirebaseInterface {
 
-    override fun signUp(email: String, password: String): Task<AuthResult> {
+    override suspend fun signUp(email: String, password: String): Task<AuthResult> {
         return auth.createUserWithEmailAndPassword(email, password)
     }
 
-    override fun signIn(): Task<AuthResult> {
+    override suspend fun signIn(): Task<AuthResult> {
         TODO("Not yet implemented")
     }
 }
