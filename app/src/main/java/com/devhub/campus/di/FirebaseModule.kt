@@ -1,5 +1,7 @@
 package com.devhub.campus.di
 
+import com.devhub.campus.services.FirebaseService
+import com.devhub.campus.utils.FirebaseInterface
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -14,14 +16,12 @@ import javax.inject.Singleton
 @Module
 object FirebaseModule {
 
+    lateinit var auth: FirebaseAuth
+
     @Provides
     fun provideFirebaseAuthInstance(): FirebaseAuth {
-        return FirebaseAuth.getInstance()
-    }
+        auth = Firebase.auth
 
-    @ViewModelScoped
-    @Provides
-    fun someRandomString(): String {
-        return "some randomghjk"
+        return auth
     }
 }

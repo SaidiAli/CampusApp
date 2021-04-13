@@ -38,9 +38,9 @@ object Libs {
 
     object Hilt {
         const val daggerCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hiltVersion}"
-//        const val hiltCompiler = "androidx.hilt:hilt-compiler:${Versions.daggerHiltAndroid}"
-//        const val hiltViewModel = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.daggerHiltAndroid}"
-//        const val hiltNavigation = "androidx.hilt:hilt-navigation-fragment:${Versions.daggerHiltAndroid}"
+        const val hiltCompiler = "androidx.hilt:hilt-compiler:${Versions.HiltCompose}"
+        const val hiltViewModel = "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
+        const val hiltNavigation = "androidx.hilt:hilt-navigation-fragment:${Versions.HiltCompose}"
         const val HiltNavCompose = "androidx.hilt:hilt-navigation-compose:${Versions.HiltNavCompose}"
         const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.hiltVersion}"
     }
@@ -65,7 +65,7 @@ object Plugins {
     const val kotlin = "kotlin-android"
     const val daggerHilt = "dagger.hilt.android.plugin"
     const val kotlinKapt = "kapt"
-    const val firebase = "'com.google.gms.google-services"
+    const val firebase = "com.google.gms.google-services"
 }
 
 object Classpaths {
@@ -90,5 +90,6 @@ object Versions {
     internal const val firebase = "4.3.5"
     internal const val FirebaseBom = "26.8.0"
     internal const val HiltNavCompose = "1.0.0-alpha01"
+    internal const val HiltCompose = "1.0.0-beta01"
     const val compose = "1.0.0-beta01"
 }

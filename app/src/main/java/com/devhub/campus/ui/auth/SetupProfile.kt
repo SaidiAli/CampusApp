@@ -17,7 +17,7 @@ import com.devhub.campus.ui.auth.components.UserTextInput
 
 @Composable
 fun ProfileScreen(
-    authViewModel: MainAuthViewModel = viewModel()
+    viewModel: MainAuthViewModel
 ){
         Scaffold {
                 contentPadding -> Surface(modifier = Modifier.padding(contentPadding)) {
@@ -34,23 +34,23 @@ fun ProfileScreen(
                 )
                 Column(modifier = Modifier.fillMaxWidth()) {
                     UserTextInput(
-                        text = authViewModel.name,
-                        onValueChanged = authViewModel::getName,
+                        text = viewModel.name,
+                        onValueChanged = viewModel::getName,
                         labelText = stringResource(id = R.string.username),
                     )
                     UserTextInput(
-                        text = authViewModel.campusName,
-                        onValueChanged = authViewModel::getCampusName,
+                        text = viewModel.campusName,
+                        onValueChanged = viewModel::getCampusName,
                         labelText = stringResource(id = R.string.campus_name),
                     )
                     UserTextInput(
-                        text = authViewModel.programOfStudy,
-                        onValueChanged = authViewModel::getPOS,
+                        text = viewModel.programOfStudy,
+                        onValueChanged = viewModel::getPOS,
                         labelText = stringResource(id = R.string.pos),
                     )
                     UserTextInput(
-                        text = authViewModel.password,
-                        onValueChanged = authViewModel::getPassword,
+                        text = viewModel.password,
+                        onValueChanged = viewModel::getPassword,
                         labelText = stringResource(id = R.string.password),
                         visualTransformation = PasswordVisualTransformation()
                     )

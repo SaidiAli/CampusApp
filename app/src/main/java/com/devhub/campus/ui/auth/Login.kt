@@ -22,7 +22,7 @@ import com.devhub.campus.ui.theme.CampusTheme
 
 @Composable
 fun LoginScreen(
-    authViewModel: MainAuthViewModel = viewModel(),
+    viewModel: MainAuthViewModel,
     goToOtpScreen: () -> Unit
 ) {
 
@@ -41,19 +41,19 @@ fun LoginScreen(
                 )
                 Column(modifier = Modifier.fillMaxWidth()) {
                     UserTextInput(
-                        text = authViewModel.name,
-                        onValueChanged = authViewModel::getName,
+                        text = viewModel.name,
+                        onValueChanged = viewModel::getName,
                         labelText = stringResource(id = R.string.username)
                     )
                     UserTextInput(
-                        text = authViewModel.password,
-                        onValueChanged = authViewModel::getPassword,
+                        text = viewModel.password,
+                        onValueChanged = viewModel::getPassword,
                         labelText = stringResource(id = R.string.password),
                         visualTransformation = PasswordVisualTransformation()
                     )
                 }
                 BigButton(
-                    onPressed = { authViewModel.getLoginData(goToOtpScreen) },
+                    onPressed = { viewModel.getLoginData(goToOtpScreen) },
                     modifier = Modifier.align(Alignment.CenterHorizontally),
                     text = stringResource(id = R.string.login)
                 )

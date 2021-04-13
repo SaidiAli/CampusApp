@@ -1,33 +1,20 @@
 package com.devhub.campus.ui.auth
 
-import android.app.Activity
-import android.util.Log
-import android.widget.Toast
+
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.lifecycle.ViewModel
-import com.google.android.gms.tasks.Task
+import com.devhub.campus.services.FirebaseService
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class MainAuthViewModel
-@Inject
-constructor(
-    private val auth: FirebaseAuth
-) : ViewModel() {
-    @Inject lateinit var boom: String
+class MainAuthViewModel @Inject constructor() : ViewModel() {
 
-    private val TAG: String = "APP_DEBUG"
-
-    init {
-        Log.d(TAG, boom)
-    }
+    @Inject
+    lateinit var firebaseService: FirebaseService
 
     var name: String by mutableStateOf("")
     private set
@@ -46,6 +33,10 @@ constructor(
 
     var programOfStudy: String by mutableStateOf("")
         private set
+
+    var showErrorToast: Boolean by mutableStateOf(false)
+    var errorMessage: String? by mutableStateOf("")
+    var loadingState: Boolean by mutableStateOf(false)
 
     fun getName(text: String) {
         name = text
@@ -74,16 +65,24 @@ constructor(
     fun getRegistrationData(
         navigate: () -> Unit
     ) {
-        /* TODO: use implementation from a firebase service class */
+        /* TODO: inspect auth exceptions/errors - some are not captured in toast */
+        if (email.isEmpty() or password.isEmpty()) {
+            return
+        }
 
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener {
-                if(it.isSuccessful) {
-                    Log.i("APP_INFO", "Signup successfull: ${it.result?.user.toString()}")
-                } else {
-                    Log.i("APP_INFO", "Signup failed: ${it.exception}")
-                }
+        val task = firebaseService.signUp(email, password)
+
+        if(!task.isComplete) {
+            loadingState = true
+        }
+
+        task.addOnCompleteListener {
+            loadingState = false
+
+            if(it.isSuccessful) {
+                navigate()
             }
+        }
     }
 
     fun getLoginData(

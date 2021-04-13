@@ -5,6 +5,7 @@ plugins {
     id(Plugins.kotlin)
     kotlin(Plugins.kotlinKapt)
     id(Plugins.daggerHilt)
+    id(Plugins.firebase)
 }
 
 android {
@@ -12,7 +13,7 @@ android {
     buildToolsVersion = "30.0.3"
 
     defaultConfig {
-        applicationId = "com.devhub.campus"
+        applicationId = "com.devhhub.campus"
         minSdk = 21
         targetSdk = 30
         versionCode = 1
@@ -56,10 +57,13 @@ dependencies {
     implementation(Libs.LifeCycle.lifeCycle)
     implementation(Libs.Activity.activityCompose)
     implementation(Libs.Hilt.hiltAndroid)
+    implementation(Libs.Hilt.hiltViewModel)
+    implementation(Libs.Hilt.hiltNavigation)
     implementation(Libs.Navigation.compose)
     implementation(platform(Libs.Firebase.Bom))
     implementation(Libs.Firebase.Auth)
     implementation(Libs.Firebase.Analytics)
+    kapt(Libs.Hilt.hiltCompiler)
     kapt(Libs.Hilt.daggerCompiler)
     testImplementation("junit:junit:4.+")
 }
