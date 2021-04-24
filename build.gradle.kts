@@ -10,6 +10,7 @@ buildscript {
         classpath(Classpaths.kotlinGradlePlugin)
         classpath(Classpaths.daggerPlugin)
         classpath(Classpaths.firebase)
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.30")
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle.kts files
     }

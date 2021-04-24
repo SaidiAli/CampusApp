@@ -1,4 +1,4 @@
-package com.devhub.campus.screens.auth
+package com.devhub.campus.ui.auth
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -16,8 +16,6 @@ import com.devhub.campus.ui.auth.components.UserTextInput
 import com.devhub.campus.ui.theme.CampusTheme
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.devhub.campus.ui.auth.MainAuthViewModel
 
 @Composable
 fun OtpScreen(

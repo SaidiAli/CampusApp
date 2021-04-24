@@ -1,4 +1,4 @@
-package com.devhub.campus.screens.auth
+package com.devhub.campus.ui.auth
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -17,7 +17,8 @@ import com.devhub.campus.ui.auth.components.UserTextInput
 
 @Composable
 fun ProfileScreen(
-    viewModel: MainAuthViewModel
+    viewModel: MainAuthViewModel,
+    goToFeedScreen: () -> Unit
 ){
         Scaffold {
                 contentPadding -> Surface(modifier = Modifier.padding(contentPadding)) {
@@ -30,12 +31,13 @@ fun ProfileScreen(
 
                 Header(
                     text = stringResource(id = R.string.profile_page_header).toUpperCase(),
-                    style = MaterialTheme.typography.h2
+                    style = MaterialTheme.typography.h2,
+                    smallText = stringResource(id = R.string.profile_sub)
                 )
                 Column(modifier = Modifier.fillMaxWidth()) {
                     UserTextInput(
-                        text = viewModel.name,
-                        onValueChanged = viewModel::getName,
+                        text = viewModel.userName,
+                        onValueChanged = viewModel::getUsername,
                         labelText = stringResource(id = R.string.username),
                     )
                     UserTextInput(
@@ -48,15 +50,9 @@ fun ProfileScreen(
                         onValueChanged = viewModel::getPOS,
                         labelText = stringResource(id = R.string.pos),
                     )
-                    UserTextInput(
-                        text = viewModel.password,
-                        onValueChanged = viewModel::getPassword,
-                        labelText = stringResource(id = R.string.password),
-                        visualTransformation = PasswordVisualTransformation()
-                    )
                 }
                 BigButton(
-                    onPressed = { /* TODO: complete user registration and navigate to feeds page */ },
+                    onPressed = { viewModel.createProfile(goToFeedScreen) },
                     modifier = Modifier.align(Alignment.CenterHorizontally),
                     text = stringResource(id = R.string.finish)
                 )

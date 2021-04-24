@@ -9,6 +9,7 @@ object Libs {
         const val Bom = "com.google.firebase:firebase-bom:${Versions.FirebaseBom}"
         const val Analytics = "com.google.firebase:firebase-analytics-ktx"
         const val Auth = "com.google.firebase:firebase-auth-ktx"
+        const val Firestore = "com.google.firebase:firebase-firestore-ktx"
     }
 
     object Navigation {
@@ -44,6 +45,18 @@ object Libs {
         const val HiltNavCompose = "androidx.hilt:hilt-navigation-compose:${Versions.HiltNavCompose}"
         const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.hiltVersion}"
     }
+
+    object Coroutines {
+        const val Core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.Coroutine}"
+        const val Android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.Coroutine}"
+    }
+
+    object Accompanist {
+        const val Insets = "com.google.accompanist:accompanist-insets:${Versions.Accompanist}"
+        const val SystemUiController = "com.google.accompanist:accompanist-systemuicontroller:${Versions.Accompanist}"
+        const val Pager = "com.google.accompanist:accompanist-pager:${Versions.Accompanist}"
+        const val PagerIndicators = "com.google.accompanist:accompanist-pager-indicators:${Versions.Accompanist}"
+    }
     
 }
 
@@ -76,6 +89,7 @@ object Classpaths {
 }
 
 object Versions {
+    internal const val Coroutine = "1.4.3"
     internal const val gradlePlugin  = "7.0.0-alpha12"
     internal const val kotlinPlugin = "1.4.30"
     internal const val kotlinCompileVersion = "1.4.30"
@@ -91,5 +105,6 @@ object Versions {
     internal const val FirebaseBom = "26.8.0"
     internal const val HiltNavCompose = "1.0.0-alpha01"
     internal const val HiltCompose = "1.0.0-beta01"
+    internal const val Accompanist = "0.7.0"
     const val compose = "1.0.0-beta01"
 }

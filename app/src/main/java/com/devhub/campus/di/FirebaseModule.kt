@@ -1,27 +1,38 @@
 package com.devhub.campus.di
 
-import com.devhub.campus.services.FirebaseService
-import com.devhub.campus.utils.FirebaseInterface
+import com.devhub.campus.services.FirebaseAuthService
+import com.devhub.campus.services.FirestoreService
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
-import dagger.hilt.android.scopes.ViewModelScoped
-import javax.inject.Singleton
 
 @InstallIn(ViewModelComponent::class)
 @Module
 object FirebaseModule {
 
-    lateinit var auth: FirebaseAuth
-
     @Provides
     fun provideFirebaseAuthInstance(): FirebaseAuth {
-        auth = Firebase.auth
+        return Firebase.auth
+    }
 
-        return auth
+    @Provides
+    fun provideFirestoreInstance(): FirebaseFirestore {
+        return Firebase.firestore
+    }
+
+    @Provides
+    fun provideFirebaseService(auth: FirebaseAuth): FirebaseAuthService {
+        return FirebaseAuthService(auth)
+    }
+
+    @Provides
+    fun provideFirestoreService(db: FirebaseFirestore): FirestoreService {
+        return FirestoreService(db)
     }
 }

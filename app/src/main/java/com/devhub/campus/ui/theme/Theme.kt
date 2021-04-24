@@ -1,13 +1,19 @@
 package com.devhub.campus.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material.Colors
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.MaterialTheme.colors
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.Color
+import com.google.accompanist.systemuicontroller.rememberAndroidSystemUiController
 
 private val DarkColorPalette = darkColors(
     primary = LightGreen,
+    primaryVariant = LightGreen,
     background = Black,
     onBackground = LightGreen,
     onSurface = LightGreen
@@ -16,6 +22,7 @@ private val DarkColorPalette = darkColors(
 private val LightColorPalette = lightColors(
     primary = LightGreen,
     background = White,
+    primaryVariant = LightGreen,
     onBackground = LightGreen,
     onSurface = LightGreen
 
@@ -31,6 +38,7 @@ private val LightColorPalette = lightColors(
 
 @Composable
 fun CampusTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable() () -> Unit) {
+
     val colors = if (darkTheme) {
         DarkColorPalette
     } else {

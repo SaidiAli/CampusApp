@@ -62,7 +62,20 @@ dependencies {
     implementation(Libs.Navigation.compose)
     implementation(platform(Libs.Firebase.Bom))
     implementation(Libs.Firebase.Auth)
+    implementation(Libs.Firebase.Firestore)
     implementation(Libs.Firebase.Analytics)
+    implementation(Libs.Coroutines.Core)
+    implementation(Libs.Coroutines.Android)
+
+    // accompanist
+    implementation(Libs.Accompanist.Insets)
+    implementation(Libs.Accompanist.SystemUiController)
+    implementation(Libs.Accompanist.Pager)
+    implementation(Libs.Accompanist.PagerIndicators)
+    
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.3.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
     kapt(Libs.Hilt.hiltCompiler)
     kapt(Libs.Hilt.daggerCompiler)
     testImplementation("junit:junit:4.+")

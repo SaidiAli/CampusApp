@@ -46,13 +46,32 @@ fun BigButton(
 @Composable
 fun Header(
     style: TextStyle = TextStyle(),
-    text: String
+    text: String,
+    smallText: String? = null
 ) {
-    Text(
-        text,
-        style = style,
-        modifier = Modifier.padding(8.dp)
-    )
+    Column() {
+        Text(
+            text,
+            style = style,
+            modifier = Modifier.padding(8.dp)
+        )
+
+        Text(
+            if(!smallText.isNullOrEmpty()) smallText else "",
+            style = MaterialTheme.typography.subtitle2,
+            modifier = Modifier.padding(8.dp)
+        )
+    }
+}
+
+@Composable
+fun DropDownList() {
+    DropdownMenu(
+        expanded = false,
+        onDismissRequest = { /*TODO*/ }
+    ) {
+
+    }
 }
 
 @Composable
