@@ -1,5 +1,8 @@
 package com.devhub.campus.ui
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -44,5 +47,15 @@ fun MainBottomNavigation(
                 }
             )
         }
+    }
+}
+
+@Composable
+fun Center(
+    modifier: Modifier = Modifier,
+    content: @Composable() () -> Unit
+) {
+    Box(modifier = modifier.fillMaxSize().wrapContentSize()) {
+        content()
     }
 }

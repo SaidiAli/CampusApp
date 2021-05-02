@@ -90,7 +90,7 @@ object Classpaths {
 
 object Versions {
     internal const val Coroutine = "1.4.3"
-    internal const val gradlePlugin  = "7.0.0-alpha12"
+    internal const val gradlePlugin  = "7.0.0-alpha14"
     internal const val kotlinPlugin = "1.4.30"
     internal const val kotlinCompileVersion = "1.4.30"
     internal const val core = "1.3.2"

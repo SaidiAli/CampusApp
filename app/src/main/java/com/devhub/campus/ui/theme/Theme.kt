@@ -1,11 +1,8 @@
 package com.devhub.campus.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.Colors
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material.*
 import androidx.compose.material.MaterialTheme.colors
-import androidx.compose.material.darkColors
-import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
@@ -51,4 +48,16 @@ fun CampusTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable
         shapes = Shapes,
         content = content
     )
+}
+
+@Composable
+internal fun ThemedPreview(
+    darkTheme: Boolean = false,
+    content: @Composable () -> Unit
+) {
+    CampusTheme(darkTheme = darkTheme) {
+        Surface {
+            content()
+        }
+    }
 }
