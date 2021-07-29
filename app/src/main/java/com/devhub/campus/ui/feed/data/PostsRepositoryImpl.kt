@@ -5,13 +5,11 @@ import com.devhub.campus.utils.Result
 
 class PostsRepositoryImpl : PostsRepository {
     override suspend fun getPosts(): Result<List<Post>> {
-        // TODO("get these from a firebase service")
-        return Result.Success(posts)
+        TODO("get these from a firebase service")
     }
 
     override suspend fun getPost(): Result<Post> {
-        // TODO("get this from a firebase service")
-        return Result.Success(posts.first())
+        TODO("get this from a firebase service")
     }
 
     override suspend fun createPost(): Result<Post> {

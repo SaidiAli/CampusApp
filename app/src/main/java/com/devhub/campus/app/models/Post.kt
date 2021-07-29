@@ -14,6 +14,7 @@ data class Post(
 
 data class Reply(
     val id: String,
+    val who: UserModel,
     val text: String? = null,
     val mediaUrls: List<Media>  = emptyList(),
     val attachments: List<Attachment> = emptyList(),

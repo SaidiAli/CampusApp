@@ -11,11 +11,14 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
-@InstallIn(ViewModelComponent::class)
+@InstallIn(SingletonComponent::class)
 @Module
 object FirebaseModule {
 
+    @Singleton
     @Provides
     fun provideFirebaseAuthInstance(): FirebaseAuth {
         return Firebase.auth
@@ -31,6 +34,7 @@ object FirebaseModule {
         return FirebaseAuthService(auth)
     }
 
+    @Singleton
     @Provides
     fun provideFirestoreService(db: FirebaseFirestore): FirestoreService {
         return FirestoreService(db)

@@ -49,7 +49,9 @@ fun OtpScreen(
                 BigButton(
                     modifier = Modifier.align(Alignment.CenterHorizontally),
                     onPressed = { viewModel.handleOtpCodeVerification(goToProfileScreen) },
-                    text = stringResource(id = R.string.verification)
+                    content = {
+                        Text(text = stringResource(id = R.string.verification))
+                    }
                 )
             }
         }

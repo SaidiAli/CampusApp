@@ -42,11 +42,11 @@ fun LoginScreen(
                     smallText = stringResource(id = R.string.login_sub)
                 )
                 Column(modifier = Modifier.fillMaxWidth()) {
-                    UserTextInput(
+                    /*UserTextInput(
                         text = viewModel.email,
                         onValueChanged = viewModel::getEmail,
                         labelText = stringResource(id = R.string.email)
-                    )
+                    )*/
                     UserTextInput(
                         text = viewModel.password,
                         onValueChanged = viewModel::getPassword,
@@ -57,7 +57,14 @@ fun LoginScreen(
                 BigButton(
                     onPressed = { viewModel.getLoginData(goToOtpScreen) },
                     modifier = Modifier.align(Alignment.CenterHorizontally),
-                    text = if(viewModel.loadingState) stringResource(id = R.string.loading) else stringResource(id = R.string.login)
+                    content = {
+                        Text(
+                            text = if(viewModel.loadingState)
+                                stringResource(id = R.string.loading)
+                            else
+                                stringResource(id = R.string.login)
+                        )
+                    }
                 )
             }
         }

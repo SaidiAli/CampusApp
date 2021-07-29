@@ -3,6 +3,7 @@ package com.devhub.campus.ui
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.graphics.Color
 import androidx.hilt.navigation.compose.hiltNavGraphViewModel
 import androidx.navigation.compose.*
@@ -12,8 +13,11 @@ import com.devhub.campus.ui.auth.MainAuthViewModel
 import com.devhub.campus.ui.auth.StartingScreen
 import com.devhub.campus.ui.main.Home
 import com.devhub.campus.utils.Screen
+import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.systemuicontroller.rememberAndroidSystemUiController
 
+@ExperimentalPagerApi
+@ExperimentalComposeUiApi
 @Composable
 fun CampusApp(
     viewModel: MainAuthViewModel
@@ -36,10 +40,10 @@ fun CampusApp(
                 StartingScreen(
                     viewModel = hiltNavGraphViewModel<MainAuthViewModel>(),
                     goToLoginScreen = {
-                        navController.navigate(route = Screen.Login.route)
+                        navController.navigate(route = Screen.Auth.route)
                     },
                     goToRegistrationScreen = {
-                        navController.navigate(route = Screen.Register.route,)
+                        navController.navigate(route = Screen.Auth.route,)
                     },
                     goToFeedsScreen = {
                         navController.navigate(route = Screen.Feed.route) {
@@ -80,16 +84,6 @@ fun CampusApp(
                 )
             }
 
-            composable(Screen.Profile.route) {
-                ProfileScreen(
-                    viewModel = hiltNavGraphViewModel<MainAuthViewModel>(),
-                    goToFeedScreen = {
-                        navController.navigate(route = Screen.Feed.route) {
-                            popUpTo(route = Screen.Profile.route) { inclusive = true }
-                        }
-                    }
-                )
-            }
             composable(Screen.Feed.route) {
                 Home()
             }

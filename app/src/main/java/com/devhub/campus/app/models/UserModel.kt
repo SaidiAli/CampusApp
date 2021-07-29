@@ -3,8 +3,9 @@ package com.devhub.campus.app.models
 import java.util.*
 
 data class UserModel(
-    // val id: String,
-    val name: String,
+    val id: String? = null,
+    val name: String? = null,
+    val profileImage: String? = null,
     val phoneNumber: String? = null,
     val email: String? = null,
     val userName: String? = null,
@@ -55,5 +56,4 @@ enum class College(val college: String) {
     CHUSS("College of Humanities and Social Sciences"),
     COVAB("College of Veterinary Medicine, Animal Resources and Biosecurity"),
     SOL("School of Law"),
-
 }

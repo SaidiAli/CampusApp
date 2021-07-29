@@ -1,6 +1,8 @@
 package com.devhub.campus.ui.discover
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -12,16 +14,16 @@ import com.devhub.campus.ui.AppSurface
 
 @Composable
 fun DiscoverScreen(
-    modifier: Modifier = Modifier
+    contentPadding: PaddingValues
 ) {
     AppSurface(
-        modifier = modifier
+        modifier = Modifier.padding(contentPadding)
     ) {
         Text(
             text = "Discover Screen",
             style = MaterialTheme.typography.h1,
             color = Color.Cyan,
-            modifier = modifier.fillMaxSize().wrapContentSize()
+            modifier = Modifier.fillMaxSize().wrapContentSize()
         )
     }
 }

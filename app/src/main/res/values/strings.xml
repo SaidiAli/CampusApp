@@ -13,18 +13,23 @@
     <string name="loading">Loading...</string>
     <string name="finish">Finish</string>
     <string name="username">Choose a Username</string>
-    <string name="username_login">Username</string>
     <string name="pos">Program Of Study</string>
     <string name="campus_name">Campus Name</string>
     <string name="password">Password</string>
     <string name="otp">OTP</string>
-    <string name="phone_number">Your Phone Number</string>
     <string name="name">Name</string>
     <string name="email">Email</string>
     <string name="registration_sub">Thanks For Joining us</string>
     <string name="login_sub">Welcome back!</string>
     <string name="profile_sub">More about you</string>
-    <string name="feed">Campus Feed</string>
+    <string name="feed">Feed</string>
     <string name="discover">Discover</string>
     <string name="dm">Messages</string>
+    <string name="newPost">Create</string>
+    <string name="profile">Profile</string>
+    <string name="auth_screen_header">Authenticate</string>
+    <string name="title_activity_main_auth">MainAuthActivity</string>
+    <string name="client_id"></string>
+    <string name="title_activity_setup_profile">SetupProfileActivity</string>
+
 </resources>

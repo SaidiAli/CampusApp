@@ -21,7 +21,7 @@ import com.devhub.campus.R
 fun BigButton(
     onPressed: () -> Unit,
     modifier: Modifier = Modifier,
-    text: String
+    content: @Composable () -> Unit
 ) {
     Button(
         onClick = onPressed,
@@ -35,11 +35,7 @@ fun BigButton(
             contentColor = Color.White
         )
     ) {
-        Text(
-            text,
-            style = MaterialTheme.typography.button,
-            color = Color.White
-        )
+        content
     }
 }
 

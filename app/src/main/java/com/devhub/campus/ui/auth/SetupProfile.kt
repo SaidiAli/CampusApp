@@ -14,11 +14,13 @@ import com.devhub.campus.ui.auth.MainAuthViewModel
 import com.devhub.campus.ui.auth.components.BigButton
 import com.devhub.campus.ui.auth.components.Header
 import com.devhub.campus.ui.auth.components.UserTextInput
+import java.util.*
+
+// Todo: Check the design (SetupProfile Screen)
 
 @Composable
-fun ProfileScreen(
+fun SetupProfileScreen(
     viewModel: MainAuthViewModel,
-    goToFeedScreen: () -> Unit
 ){
         Scaffold {
                 contentPadding -> Surface(modifier = Modifier.padding(contentPadding)) {
@@ -30,11 +32,16 @@ fun ProfileScreen(
             ) {
 
                 Header(
-                    text = stringResource(id = R.string.profile_page_header).toUpperCase(),
+                    text = stringResource(id = R.string.profile_page_header).uppercase(Locale.getDefault()),
                     style = MaterialTheme.typography.h2,
                     smallText = stringResource(id = R.string.profile_sub)
                 )
                 Column(modifier = Modifier.fillMaxWidth()) {
+                    UserTextInput(
+                        text = viewModel.name,
+                        onValueChanged = viewModel::getName,
+                        labelText = stringResource(id = R.string.name)
+                    )
                     UserTextInput(
                         text = viewModel.userName,
                         onValueChanged = viewModel::getUsername,
@@ -52,9 +59,11 @@ fun ProfileScreen(
                     )
                 }
                 BigButton(
-                    onPressed = { viewModel.createProfile(goToFeedScreen) },
+                    onPressed = { viewModel.createProfile() },
                     modifier = Modifier.align(Alignment.CenterHorizontally),
-                    text = stringResource(id = R.string.finish)
+                    content = {
+                        Text(text = stringResource(id = R.string.finish))
+                    }
                 )
             }
         }

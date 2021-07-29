@@ -7,4 +7,5 @@ sealed class Screen(val route: String) {
     object Register : Screen("register")
     object Otp : Screen("otp")
     object Profile : Screen("profile")
+    object Auth: Screen("auth_screen")
 }

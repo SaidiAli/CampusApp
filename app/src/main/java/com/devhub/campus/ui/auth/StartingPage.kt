@@ -7,6 +7,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import com.devhub.campus.R
 import com.devhub.campus.services.FirebaseAuthService
@@ -14,6 +15,7 @@ import com.devhub.campus.ui.auth.components.BigButton
 import com.devhub.campus.ui.auth.components.Header
 import com.devhub.campus.ui.theme.CampusTheme
 import com.devhub.campus.utils.Constants
+import java.util.*
 
 @Composable
 fun StartingScreen(
@@ -33,12 +35,17 @@ fun StartingScreen(
                 verticalArrangement = Arrangement.SpaceAround
             ) {
                 Header(
-                    text = stringResource(id = R.string.starting_page_header).toUpperCase(),
+                    text = stringResource(id = R.string.starting_page_header).uppercase(Locale.getDefault()),
                     style = MaterialTheme.typography.h1
                 )
                 BigButton(
                     onPressed = goToRegistrationScreen,
-                    text = stringResource(id = R.string.create_account)
+                    content = {
+                        Text(
+                            text = stringResource(id = R.string.create_account),
+                            color = Color.White,
+                        )
+                    }
                 )
                 Text(
                     stringResource(id = R.string.login_option),

@@ -54,11 +54,11 @@ fun RegistrationScreen(
                         onValueChanged = viewModel::getName,
                         labelText = stringResource(id = R.string.name)
                     )
-                    UserTextInput(
+                    /*UserTextInput(
                         text = viewModel.email,
                         onValueChanged = viewModel::getEmail,
                         labelText = stringResource(id = R.string.email)
-                    )
+                    )*/
                     UserTextInput(
                         text = viewModel.password,
                         onValueChanged = viewModel::getPassword,
@@ -69,11 +69,14 @@ fun RegistrationScreen(
                 BigButton(
                     modifier = Modifier.align(Alignment.CenterHorizontally),
                     onPressed = { viewModel.getRegistrationData(goToProfileScreen) },
-                    text =
-                    if(viewModel.loadingState)
-                        stringResource(id = R.string.loading)
-                    else
-                        stringResource(id = R.string.register)
+                    content = {
+                        Text(
+                            text = if(viewModel.loadingState)
+                            stringResource(id = R.string.loading)
+                        else
+                            stringResource(id = R.string.register)
+                        )
+                    }
                 )
             }
         }

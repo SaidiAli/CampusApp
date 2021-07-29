@@ -1,6 +1,8 @@
 package com.devhub.campus.ui.messages
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -11,14 +13,14 @@ import com.devhub.campus.ui.AppSurface
 
 @Composable
 fun MessagesScreen(
-    modifier: Modifier = Modifier
+    contentPadding: PaddingValues
 ) {
-    AppSurface(modifier = modifier) {
+    AppSurface(modifier = Modifier.padding(contentPadding)) {
         Text(
             text = "DMs",
             style = MaterialTheme.typography.h1,
             color = Color.Cyan,
-            modifier = modifier.fillMaxSize().wrapContentSize()
+            modifier = Modifier.fillMaxSize().wrapContentSize()
         )
     }
 }
