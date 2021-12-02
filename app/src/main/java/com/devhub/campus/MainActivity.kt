@@ -27,7 +27,6 @@ import javax.inject.Inject
 class MainActivity : ComponentActivity() {
     private val mainViewModel: MainActivityViewModel by viewModels()
 
-    @ExperimentalPagerApi
     @ExperimentalComposeUiApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

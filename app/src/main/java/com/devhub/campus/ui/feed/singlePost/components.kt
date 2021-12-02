@@ -33,7 +33,6 @@ import com.google.accompanist.pager.rememberPagerState
 
 // todo: reply text input
 
-@ExperimentalPagerApi
 @Composable
 fun SinglePost(
     contentPadding: PaddingValues,
@@ -244,7 +243,6 @@ fun ActionRow(
     }
 }
 
-@ExperimentalPagerApi
 @Composable
 fun ThePost(
     post: Post?
@@ -267,33 +265,15 @@ fun ThePost(
 
 // Todo: Consider Using Android ViewPager for the carousel
 
-@ExperimentalPagerApi
 @Composable
 fun ImageCarousel(
     images: List<Media> = emptyList()
 ) {
-    val pagerState = rememberPagerState(
-        pageCount = images.size,
-        initialPageOffset = 0.8f
-    )
-
     BoxWithConstraints(
         modifier = Modifier
             .requiredHeight(250.dp)
             .fillMaxWidth()
-    ) {
-        HorizontalPager(state = pagerState) {
-            val pageIndex: Int = currentPage
-            Image(
-                painter = rememberCoilPainter(request = images.elementAt(pageIndex).url),
-                contentDescription = null,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .padding(2.dp)
-                    .clip(RoundedCornerShape(4.dp)),
-            )
-        }
-    }
+    ) {}
 }
 
 @Composable

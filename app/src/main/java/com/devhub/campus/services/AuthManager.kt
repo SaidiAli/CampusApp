@@ -23,9 +23,5 @@ class AuthManager @Inject constructor(
     val authState: AuthState =
         if (firebaseAuth.user != null) AuthState.LOGGED_IN else AuthState.LOGGED_OUT
 
-    lateinit var localUser: UserModel
-
-    init {
-
-    }
+    var localUser: UserModel = UserModel()
 }

@@ -6,18 +6,19 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import javax.inject.Inject
 
 class FirestoreService
 @Inject
 constructor (
     private val db: FirebaseFirestore
-) : FirestoreInterface {
-    override suspend fun write(user: UserModel): Task<DocumentReference> {
-        return db.collection("users").add(user)
+) {
+    fun write(user: UserModel, doc: String): Task<Void> {
+        return db.collection("users").document(doc).set(user, SetOptions.merge())
     }
 
-    override suspend fun readUserCollection(document: String): Task<DocumentSnapshot> {
+    fun readUserCollection(document: String): Task<DocumentSnapshot> {
         return db.collection("users").document(document).get()
     }
 }

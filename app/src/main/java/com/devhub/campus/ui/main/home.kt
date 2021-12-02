@@ -36,7 +36,6 @@ val bottomNavSections =
         MainSection.Profile
     )
 
-@ExperimentalPagerApi
 @ExperimentalComposeUiApi
 @Composable
 fun Home() {

@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "campus"
 include(":app")
+include(":app:components")

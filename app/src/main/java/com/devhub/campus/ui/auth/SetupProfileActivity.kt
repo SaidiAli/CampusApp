@@ -13,6 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.devhub.campus.MainActivity
 import com.devhub.campus.services.AuthManager
 import com.devhub.campus.ui.auth.ui.theme.CampusTheme
+import com.devhub.campus.utils.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -38,8 +39,8 @@ class SetupProfileActivity : ComponentActivity() {
     }
 
     private fun listenToViewModelState() {
-        if(viewModel.profileCreated) {
-            startActivity(Intent(this, MainActivity::class.java))
-        }
+        viewModel.profileCreated.observe(this, EventObserver{
+            if (it) startActivity(Intent(this, MainActivity::class.java))
+        })
     }
 }

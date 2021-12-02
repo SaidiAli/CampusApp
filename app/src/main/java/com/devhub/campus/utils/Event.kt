@@ -1,4 +1,4 @@
-package com.example.android.architecture.blueprints.todoapp
+package com.devhub.campus.utils
 
 import androidx.lifecycle.Observer
 
@@ -7,7 +7,7 @@ import androidx.lifecycle.Observer
  */
 open class Event<out T>(private val content: T) {
 
-    @Suppress("MemberVisibilityCanBePrivate")
+    // @Suppress("MemberVisibilityCanBePrivate")
     var hasBeenHandled = false
         private set // Allow external read but not write
 

@@ -1,10 +1,11 @@
 package com.devhub.campus.ui.auth
 
-
 import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.devhub.campus.app.models.UserModel
@@ -13,6 +14,7 @@ import com.devhub.campus.services.FirebaseAuthService
 import com.devhub.campus.services.FirestoreService
 import com.devhub.campus.services.FirestoreToLocalUserMapper
 import com.devhub.campus.utils.Constants
+import com.devhub.campus.utils.Event
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.DocumentSnapshot
@@ -32,26 +34,22 @@ constructor(
     private val db: FirebaseFirestore,
     private val f: FirestoreToLocalUserMapper
 ) : ViewModel() {
-
-    init {
-
-        // initialise localUser
-        authManager.localUser = UserModel()
-    }
-
-    private val u: UserModel = authManager.localUser
+    lateinit var _id: String
 
     /* Todo: add the year of study */
 
-    var profileCreated: Boolean by mutableStateOf(false)
+    private var _profileCreated = MutableLiveData<Event<Boolean>>()
+    var profileCreated: LiveData<Event<Boolean>> = _profileCreated
 
-    var name: String by mutableStateOf(u.name.toString())
+    var email: String = ""
+
+    var name: String by mutableStateOf("")
         private set
 
     var userName: String by mutableStateOf("")
         private set
 
-    var number: String by mutableStateOf(u.phoneNumber.toString())
+    var number: String by mutableStateOf("")
         private set
 
     var password: String by mutableStateOf("")
@@ -67,7 +65,8 @@ constructor(
     var errorMessage: String? by mutableStateOf("")
     var loadingState: Boolean by mutableStateOf(false)
 
-    var userExists: Boolean = false
+    private var _userExists = MutableLiveData<Event<Boolean>>()
+    var userExists: LiveData<Event<Boolean>> = _userExists
 
     // cached user
     var user: FirebaseUser? = firebaseService.user
@@ -99,30 +98,31 @@ constructor(
     fun checkIfUserExists(document: String?) {
         if (document != null) {
             db.collection("users").document(document).get().addOnSuccessListener { doc ->
-                if(doc.exists()) {
-                    userExists = true
+                _userExists.value = Event(doc.exists())
 
+                if(doc.exists()) {
                     viewModelScope.launch {
                         doc.data?.let { updateLocalUser(it) }
                     }
                 }
             }
+        } else {
+            _id = document ?: ""
+            _userExists.value = Event(false)
         }
     }
 
     fun updateLocalUser(
         userMap: Map<String, Any>? = null,
-        google: GoogleSignInAccount? = null,
+        nomre: String? = null,
+        e: String? = null
     ) {
         if (userMap != null) {
             authManager.localUser = f.map(userMap)
         }
 
-        if(google != null) {
-            authManager.localUser = UserModel(name = google.displayName, email = google.email,)
-        }
-
-        Log.d(Constants.DEBUG_TAG, "LocalUser updated: $u")
+        name = nomre ?: ""
+        email = e ?: ""
     }
 
     fun getRegistrationData(
@@ -204,16 +204,16 @@ constructor(
         }
 
         val user = UserModel(
-            id = u.id,
+            id = _id,
             name = name,
-            email = u.email,
+            email = email,
             pos = programOfStudy,
             userName = userName,
             phoneNumber = number,
         )
 
         viewModelScope.launch {
-            val task = firestore.write(user)
+            val task = firestore.write(user, user.id.toString()) // check for nullability
 
             if(!task.isComplete) {
                 loadingState = true
@@ -223,13 +223,25 @@ constructor(
                 loadingState = false
 
                 if(it.isSuccessful) {
-                    profileCreated = true
+                    _profileCreated.value = Event(true)
+
+                    Log.d(Constants.DEBUG_TAG, "User updated: ${authManager.localUser}")
 
                     // Todo: Redirect to feed screen
                 } else if(it.isCanceled) {
                     showErrorToast = true
                     errorMessage = it.exception?.message
                 }
+            }
+
+            task.addOnFailureListener {
+                showErrorToast = true
+                errorMessage = it.message
+
+                Log.d(
+                    Constants.DEBUG_TAG,
+                    "failed to create userProfile: docId ${user.id}, exception: ${it.message}"
+                )
             }
         }
     }

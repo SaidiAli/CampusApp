@@ -3,8 +3,8 @@ package com.devhub.campus.app.models
 import java.util.*
 
 data class UserModel(
-    val id: String? = null,
-    val name: String? = null,
+    var id: String? = null,
+    var name: String? = null,
     val profileImage: String? = null,
     val phoneNumber: String? = null,
     val email: String? = null,

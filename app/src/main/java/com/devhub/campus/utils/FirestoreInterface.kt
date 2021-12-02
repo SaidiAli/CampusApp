@@ -6,6 +6,6 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 
 interface FirestoreInterface {
-    suspend fun write(user: UserModel): Task<DocumentReference>
-    suspend fun readUserCollection(document: String): Task<DocumentSnapshot>
+    suspend fun write(user: UserModel): Task<Any>
+    suspend fun readUserCollection(document: String): Task<Any>
 }

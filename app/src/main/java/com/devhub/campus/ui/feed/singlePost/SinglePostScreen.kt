@@ -13,7 +13,6 @@ object SinglePostScreenOpt {
     fun arg(id: String) = "singlePost/$id"
 }
 
-@ExperimentalPagerApi
 @Composable
 fun SinglePostScreen(
     contentPadding: PaddingValues,

@@ -15,9 +15,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.*
 import com.devhub.campus.ui.auth.ui.theme.CampusTheme
 import com.devhub.campus.utils.Constants.DEBUG_TAG
-import com.devhub.campus.utils.RC_SIGN_IN
-import com.devhub.campus.utils.Screen
-import com.devhub.campus.utils.WEB_CLIENT_ID
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -34,6 +31,7 @@ import com.devhub.campus.services.AuthManager
 import com.devhub.campus.services.FirebaseAuthService
 import com.devhub.campus.services.FirebaseToLocalUserMapper
 import com.devhub.campus.services.FirestoreService
+import com.devhub.campus.utils.*
 
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.*
@@ -101,17 +99,6 @@ class MainAuthActivity : ComponentActivity() {
                                 authenticate = { signInWithGoogle() }
                             )
                         }
-
-                        /*composable(Screen.Profile.route) {
-                            SetupProfileScreen(
-                                viewModel = hiltViewModel<MainAuthViewModel>(),
-                                goToFeedScreen = {
-                                    navController.navigate(route = Screen.Feed.route) {
-                                        popUpTo(route = Screen.Profile.route) { inclusive = true }
-                                    }
-                                }
-                            )
-                        }*/
                     }
                 }
             }
@@ -127,10 +114,11 @@ class MainAuthActivity : ComponentActivity() {
             try {
                 // Google Sign In was successful, authenticate with Firebase
                 if (task.isSuccessful) {
-                    Log.d(DEBUG_TAG, "firebaseAuthWithGoogle: " + task.result?.id)
-                    Log.d(DEBUG_TAG, "GoogleAccount: ${task.result?.displayName} ${task.result?.familyName} ${task.result?.givenName}")
 
-                    viewModel.updateLocalUser(google = task.result)
+                    viewModel.updateLocalUser(
+                        nomre = task.result?.displayName,
+                        e = task.result?.email
+                    )
                     firebaseAuthWithGoogle(task.result?.idToken!!)
                 } else {
                     Log.d(DEBUG_TAG, "Google sign in task failed", task.exception)
@@ -157,6 +145,11 @@ class MainAuthActivity : ComponentActivity() {
 
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
+
+                viewModel.userExists.observe(this, EventObserver {
+                    if(it) startMainActivity() else startSetupProfileActivity()
+                })
+
                 if (task.isSuccessful) {
                     Toast.makeText(
                         this,
@@ -166,13 +159,6 @@ class MainAuthActivity : ComponentActivity() {
 
                     // check if user exists or new account
                     viewModel.checkIfUserExists(task.result?.user?.uid)
-
-                    if(viewModel.userExists) {
-                        startMainActivity()
-                    } else {
-                        startSetupProfileActivity()
-                    }
-
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.d(DEBUG_TAG, "firebase signIn failed")
